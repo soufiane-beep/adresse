@@ -14,6 +14,8 @@ const menu = [
         price: "25€",
         badge: "Formule",
         image: null,
+        components: ["Création salée", "Dessert signature", "Limonade maison"],
+        timeSlot: "10h – 15h",
       },
       {
         name: "Sweet Chicken Waffle",
@@ -441,8 +443,60 @@ interface CardProps {
   badge: string | null;
   image: string | null;
   objectPosition?: string;
+  components?: string[];
+  timeSlot?: string;
   index: number;
   onImageClick?: (image: string, name: string) => void;
+}
+
+function FormuleCard({ name, price, components, timeSlot, index }: CardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
+      className="bg-ink p-8 md:p-12 flex flex-col md:flex-row gap-10 md:gap-20 items-start md:items-center"
+    >
+      {/* Left — title & price */}
+      <div className="flex-1 min-w-0">
+        <div className="flex flex-wrap gap-2 mb-6">
+          <span className="text-[8px] font-sans font-semibold tracking-[0.18em] uppercase px-2.5 py-1 bg-ember text-parchment">
+            Formule
+          </span>
+          {timeSlot && (
+            <span className="text-[8px] font-sans font-semibold tracking-[0.18em] uppercase px-2.5 py-1 border border-parchment/20 text-parchment/50">
+              {timeSlot}
+            </span>
+          )}
+        </div>
+        <h3
+          className="font-serif text-parchment font-light leading-tight mb-4"
+          style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+        >
+          {name}
+        </h3>
+        <span className="font-sans font-semibold text-ember text-2xl">{price}</span>
+      </div>
+
+      {/* Right — components chips */}
+      {components && (
+        <div className="flex flex-col gap-4 md:items-end">
+          {components.map((comp, i) => (
+            <div key={comp} className="flex flex-col md:items-end gap-4">
+              <span className="text-[9px] font-sans font-semibold tracking-[0.22em] uppercase px-4 py-2 border border-parchment/20 text-parchment/70">
+                {comp}
+              </span>
+              {i < components.length - 1 && (
+                <span className="text-ember font-sans font-semibold text-xs tracking-widest self-center md:self-end px-1">
+                  +
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </motion.div>
+  );
 }
 
 function MenuCard({ name, description, price, badge, image, objectPosition = "center", index, onImageClick }: CardProps) {
@@ -485,9 +539,7 @@ function MenuCard({ name, description, price, badge, image, objectPosition = "ce
                 {price}
               </span>
             </div>
-            <p className="font-sans text-parchment/65 text-[10px] leading-relaxed mt-2 line-clamp-3
-                          opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
-                          transition-all duration-500 ease-out">
+            <p className="font-sans text-parchment/65 text-[10px] leading-relaxed mt-2 line-clamp-3">
               {description}
             </p>
           </div>
@@ -535,9 +587,7 @@ function MenuCard({ name, description, price, badge, image, objectPosition = "ce
                 {price}
               </span>
             </div>
-            <p className="font-sans text-stone text-[10px] leading-relaxed mt-2 line-clamp-3
-                          opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
-                          transition-all duration-500 ease-out">
+            <p className="font-sans text-stone text-[10px] leading-relaxed mt-2 line-clamp-3">
               {description}
             </p>
           </div>
@@ -617,15 +667,21 @@ export default function Menu() {
             transition={{ duration: 0.2 }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
-            {menu[activeTab].items.map((item, i) => (
-              <MenuCard
-                key={item.name}
-                {...item}
-                index={i}
-                objectPosition={item.objectPosition}
-                onImageClick={(src, name) => setZoomImage({ src, name })}
-              />
-            ))}
+            {menu[activeTab].items.map((item, i) =>
+              "components" in item && item.components ? (
+                <div key={item.name} className="sm:col-span-2">
+                  <FormuleCard {...item} index={i} />
+                </div>
+              ) : (
+                <MenuCard
+                  key={item.name}
+                  {...item}
+                  index={i}
+                  objectPosition={item.objectPosition}
+                  onImageClick={(src, name) => setZoomImage({ src, name })}
+                />
+              )
+            )}
           </motion.div>
         </AnimatePresence>
 
