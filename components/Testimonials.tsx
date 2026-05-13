@@ -47,7 +47,7 @@ export default function Testimonials() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section ref={ref} className="py-28 md:py-40 bg-paper overflow-hidden">
+    <section id="avis" ref={ref} className="py-28 md:py-40 bg-paper overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <motion.div

@@ -116,7 +116,7 @@ export default function PhotoStrip() {
 
   return (
     <>
-      <section className="bg-surface py-10 overflow-hidden flex flex-col gap-2">
+      <section id="galerie" className="bg-surface py-10 overflow-hidden flex flex-col gap-2">
         <Strip photos={row1} direction="left" onClickPhoto={setActiveIndex} startIndex={0} />
         <Strip photos={row2} direction="right" onClickPhoto={setActiveIndex} startIndex={13} />
       </section>

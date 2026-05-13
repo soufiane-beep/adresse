@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import Signatures from "@/components/Signatures";
+import Coulisses from "@/components/Coulisses";
 import Menu from "@/components/Menu";
 import PhotoStrip from "@/components/PhotoStrip";
 import Testimonials from "@/components/Testimonials";
@@ -19,6 +20,7 @@ export default function Home() {
         <Marquee />
         <About />
         <Signatures />
+        <Coulisses />
         <Menu />
         <PhotoStrip />
         <Testimonials />
