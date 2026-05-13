@@ -79,11 +79,11 @@ export default function About() {
             {/* Pillars */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-3 gap-4 border-t border-stone/20 pt-8"
+              className="grid grid-cols-3 gap-2 sm:gap-4 border-t border-stone/20 pt-8"
             >
               {pillars.map((p) => (
                 <div key={p.label}>
-                  <p className="font-serif text-ink font-medium text-xl mb-1">{p.label}</p>
+                  <p className="font-serif text-ink font-medium text-base sm:text-xl mb-1">{p.label}</p>
                   <p className="font-sans text-stone text-[10px] tracking-wide uppercase">{p.sub}</p>
                 </div>
               ))}
@@ -106,12 +106,12 @@ export default function About() {
               />
             </div>
 
-            {/* Overlapping secondary image */}
+            {/* Overlapping secondary image — hidden on mobile to avoid overflow */}
             <motion.div
               initial={{ opacity: 0, x: 30, y: -20 }}
               animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
               transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute -bottom-8 -left-8 w-44 h-52 md:w-52 md:h-64 overflow-hidden border-4 border-parchment shadow-2xl"
+              className="hidden sm:block absolute -bottom-8 -left-8 w-44 h-52 md:w-52 md:h-64 overflow-hidden border-4 border-parchment shadow-2xl"
             >
               <Image
                 src="/images/A7400225.jpg"

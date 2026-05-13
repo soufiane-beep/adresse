@@ -21,6 +21,7 @@ const menu = [
         price: "14€",
         badge: "Best Seller",
         image: "IMG_3256 19.15.09.jpg",
+        objectPosition: "center",
       },
       {
         name: "Burrata Crush",
@@ -28,6 +29,7 @@ const menu = [
         price: "14€",
         badge: null,
         image: "IMG_3455.jpg",
+        objectPosition: "center 70%",
       },
       {
         name: "Cheesy Toast",
@@ -35,6 +37,7 @@ const menu = [
         price: "13€",
         badge: null,
         image: "A7400119 18.44.33.jpg",
+        objectPosition: "center 60%",
       },
     ],
   },
@@ -47,6 +50,7 @@ const menu = [
         price: "15€",
         badge: null,
         image: "A7403214.jpg",
+        objectPosition: "center bottom",
       },
       {
         name: "Pink Curry Curcuma",
@@ -54,6 +58,7 @@ const menu = [
         price: "13€",
         badge: null,
         image: "A7400178.jpg",
+        objectPosition: "center",
       },
       {
         name: "Pure Green",
@@ -61,6 +66,7 @@ const menu = [
         price: "13€",
         badge: "GF · DF",
         image: "IMG_3465.jpg",
+        objectPosition: "center bottom",
       },
       {
         name: "Avocado Eggs Toast",
@@ -68,6 +74,7 @@ const menu = [
         price: "13€",
         badge: null,
         image: "A7403418.jpg",
+        objectPosition: "center bottom",
       },
     ],
   },
@@ -80,6 +87,7 @@ const menu = [
         price: "7€",
         badge: null,
         image: "A7403512.jpg",
+        objectPosition: "center 70%",
       },
       {
         name: "Burrata & Pesto Verde",
@@ -87,6 +95,7 @@ const menu = [
         price: "7€",
         badge: null,
         image: "A7403502.jpg",
+        objectPosition: "center 65%",
       },
       {
         name: "Fresh Saumon",
@@ -94,6 +103,7 @@ const menu = [
         price: "7€",
         badge: null,
         image: "A7403492.jpg",
+        objectPosition: "center 65%",
       },
     ],
   },
@@ -113,6 +123,7 @@ const menu = [
         price: "12€",
         badge: null,
         image: "A7403289.jpg",
+        objectPosition: "center bottom",
       },
       {
         name: "Peanut Caramel",
@@ -120,6 +131,7 @@ const menu = [
         price: "12€",
         badge: null,
         image: "A7403335.jpg",
+        objectPosition: "center bottom",
       },
       {
         name: "Inspiration Tiramisu",
@@ -155,6 +167,7 @@ const menu = [
         price: "5€",
         badge: null,
         image: "A7400256.jpg",
+        objectPosition: "center 65%",
       },
       {
         name: "Smoothie Bowl",
@@ -188,6 +201,7 @@ const menu = [
         price: "7€",
         badge: null,
         image: "A7403309.jpg",
+        objectPosition: "center top",
       },
       {
         name: "Hojicha Latte",
@@ -331,6 +345,7 @@ const menu = [
         price: "3,50€",
         badge: null,
         image: "A7400039.jpg",
+        objectPosition: "center 65%",
       },
       {
         name: "Café",
@@ -399,6 +414,7 @@ const menu = [
         price: "6€",
         badge: null,
         image: "A7403252.jpg",
+        objectPosition: "center top",
       },
       {
         name: "Mojito Violette",
@@ -424,31 +440,62 @@ interface CardProps {
   price: string;
   badge: string | null;
   image: string | null;
+  objectPosition?: string;
   index: number;
+  onImageClick?: (image: string, name: string) => void;
 }
 
-function MenuCard({ name, description, price, badge, image, index }: CardProps) {
+function MenuCard({ name, description, price, badge, image, objectPosition = "center", index, onImageClick }: CardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
-      className="group bg-parchment border border-stone/20 hover:border-ember/40 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 hover:shadow-md flex flex-col"
+      className={`group relative aspect-[4/5] overflow-hidden ${image ? "cursor-zoom-in" : ""}`}
+      onClick={() => image && onImageClick && onImageClick(image, name)}
     >
-      {/* Header uniforme pour toutes les cartes */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden flex-shrink-0">
-        {image ? (
+      {image ? (
+        <>
           <Image
             src={`/images/${encodeURIComponent(image)}`}
             alt={name}
             fill
-            className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            style={{ objectPosition }}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
           />
-        ) : (
-          /* Placeholder élégant pour items sans photo */
-          <div className="w-full h-full bg-paper flex items-center justify-center overflow-hidden">
-            {/* Diagonal grain pattern */}
+
+          {/* Deep gradient for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-transparent" />
+
+          {/* Badge */}
+          {badge && (
+            <span className="absolute top-3 left-3 text-[8px] font-sans font-semibold tracking-[0.18em] uppercase px-2.5 py-1 bg-ember text-parchment z-10">
+              {badge}
+            </span>
+          )}
+
+          {/* Text overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+            <div className="flex items-end justify-between gap-2">
+              <h3 className="font-serif text-parchment text-[1.05rem] font-medium leading-snug flex-1">
+                {name}
+              </h3>
+              <span className="font-sans font-semibold text-ember text-sm flex-shrink-0 mb-0.5">
+                {price}
+              </span>
+            </div>
+            <p className="font-sans text-parchment/65 text-[10px] leading-relaxed mt-2 line-clamp-3
+                          opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
+                          transition-all duration-500 ease-out">
+              {description}
+            </p>
+          </div>
+        </>
+      ) : (
+        /* Placeholder for items without photo */
+        <>
+          <div className="absolute inset-0 bg-parchment overflow-hidden">
             <div
               className="absolute inset-0"
               style={{
@@ -456,48 +503,46 @@ function MenuCard({ name, description, price, badge, image, index }: CardProps) 
                   "repeating-linear-gradient(135deg, rgba(44,26,14,0.04) 0px, rgba(44,26,14,0.04) 1px, transparent 1px, transparent 10px)",
               }}
             />
-            {/* Prix watermark */}
             <span
               className="font-serif text-ink/10 leading-none select-none pointer-events-none absolute"
-              style={{ fontSize: "clamp(4rem, 8vw, 6.5rem)", bottom: "-0.05em", right: "0.3em" }}
+              style={{ fontSize: "clamp(5rem, 10vw, 8rem)", bottom: "-0.1em", right: "0.2em" }}
               aria-hidden="true"
             >
               {price}
             </span>
-            {/* Nom stylisé au centre */}
-            <span className="font-serif text-ink/20 text-center px-6 text-lg leading-snug font-light italic relative z-10">
+            <span className="font-serif text-ink/20 text-center px-8 text-xl leading-snug font-light italic absolute inset-0 flex items-center justify-center">
               {name}
             </span>
           </div>
-        )}
 
-        {/* Overlay gradient sur les photos */}
-        {image && (
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/25 via-transparent to-transparent" />
-        )}
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-parchment to-transparent" />
 
-        {/* Badge — positionné identiquement pour tous */}
-        {badge && (
-          <span className="absolute top-3 left-3 text-[8px] font-sans font-semibold tracking-[0.18em] uppercase px-2.5 py-1 bg-ember text-parchment z-10">
-            {badge}
-          </span>
-        )}
-      </div>
+          {/* Badge */}
+          {badge && (
+            <span className="absolute top-3 left-3 text-[8px] font-sans font-semibold tracking-[0.18em] uppercase px-2.5 py-1 bg-ember text-parchment z-10">
+              {badge}
+            </span>
+          )}
 
-      {/* Contenu */}
-      <div className="p-5 flex flex-col flex-1">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="font-serif text-ink text-[1.1rem] font-medium leading-snug group-hover:text-ember transition-colors duration-200 flex-1">
-            {name}
-          </h3>
-          <span className="font-sans font-semibold text-ember text-sm flex-shrink-0 mt-0.5">
-            {price}
-          </span>
-        </div>
-        <p className="font-sans text-stone text-[11px] leading-relaxed mt-2 flex-1">
-          {description}
-        </p>
-      </div>
+          {/* Text at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+            <div className="flex items-end justify-between gap-2">
+              <h3 className="font-serif text-ink text-[1.05rem] font-medium leading-snug flex-1 group-hover:text-ember transition-colors duration-200">
+                {name}
+              </h3>
+              <span className="font-sans font-semibold text-ember text-sm flex-shrink-0 mb-0.5">
+                {price}
+              </span>
+            </div>
+            <p className="font-sans text-stone text-[10px] leading-relaxed mt-2 line-clamp-3
+                          opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
+                          transition-all duration-500 ease-out">
+              {description}
+            </p>
+          </div>
+        </>
+      )}
     </motion.div>
   );
 }
@@ -506,6 +551,7 @@ export default function Menu() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [activeTab, setActiveTab] = useState(0);
+  const [zoomImage, setZoomImage] = useState<{ src: string; name: string } | null>(null);
 
   return (
     <section id="menu" ref={ref} className="py-28 md:py-40 bg-paper">
@@ -569,10 +615,16 @@ export default function Menu() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
             {menu[activeTab].items.map((item, i) => (
-              <MenuCard key={item.name} {...item} index={i} />
+              <MenuCard
+                key={item.name}
+                {...item}
+                index={i}
+                objectPosition={item.objectPosition}
+                onImageClick={(src, name) => setZoomImage({ src, name })}
+              />
             ))}
           </motion.div>
         </AnimatePresence>
@@ -587,6 +639,43 @@ export default function Menu() {
           Menu pouvant varier selon les arrivages &nbsp;·&nbsp; Prix TTC service inclus
         </motion.p>
       </div>
+
+      {/* Image zoom modal */}
+      <AnimatePresence>
+        {zoomImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-ink/70 backdrop-blur-sm"
+            onClick={() => setZoomImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative max-w-lg w-full shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/images/${encodeURIComponent(zoomImage.src)}`}
+                alt={zoomImage.name}
+                className="w-full h-auto block"
+              />
+              <button
+                onClick={() => setZoomImage(null)}
+                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-ink/60 text-parchment hover:bg-ink transition-colors duration-150 text-lg leading-none"
+                aria-label="Fermer"
+              >
+                ×
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

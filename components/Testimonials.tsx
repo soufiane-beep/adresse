@@ -75,7 +75,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-parchment border border-stone/20 p-8 md:p-10 relative"
+              className="bg-parchment border border-stone/20 p-5 sm:p-8 md:p-10 relative"
             >
               {/* Large quote mark */}
               <span

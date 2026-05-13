@@ -76,7 +76,7 @@ export default function Signatures() {
                 className={`relative overflow-hidden md:col-span-3 ${
                   item.imageLeft ? "md:order-1" : "md:order-2"
                 }`}
-                style={{ minHeight: "380px" }}
+                style={{ minHeight: "clamp(240px, 60vw, 380px)" }}
               >
                 <Image
                   src={`/images/${encodeURIComponent(item.image)}`}
@@ -90,7 +90,7 @@ export default function Signatures() {
 
               {/* Text */}
               <div
-                className={`md:col-span-2 flex flex-col justify-center px-8 md:px-12 py-12 ${
+                className={`md:col-span-2 flex flex-col justify-center px-5 sm:px-8 md:px-12 py-10 md:py-12 ${
                   item.imageLeft ? "md:order-2" : "md:order-1"
                 }`}
               >

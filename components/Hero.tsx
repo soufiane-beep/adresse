@@ -12,8 +12,8 @@ export default function Hero() {
         alt="L'Adresse 86 — Brunch Liège"
         fill
         priority
-        className="object-cover object-center"
-        style={{ opacity: 0.45 }}
+        className="object-cover"
+        style={{ opacity: 0.45, objectPosition: "center 58%" }}
         sizes="100vw"
       />
 
