@@ -99,7 +99,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a
-            href="#menu"
+            href="/menu"
             className="px-8 py-3.5 bg-ember text-ink font-sans font-semibold text-[10px] tracking-[0.22em] uppercase hover:bg-ember-light transition-all duration-200 min-w-[180px] text-center"
           >
             Voir le menu

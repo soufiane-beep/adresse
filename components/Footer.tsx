@@ -1,10 +1,10 @@
 "use client";
 
 const navLinks = [
-  { label: "Concept", href: "#concept" },
-  { label: "Menu", href: "#menu" },
-  { label: "Avis clients", href: "#avis" },
-  { label: "Infos", href: "#infos" },
+  { label: "Concept", href: "/#concept" },
+  { label: "Menu", href: "/menu" },
+  { label: "Avis clients", href: "/#avis" },
+  { label: "Infos", href: "/#infos" },
 ];
 
 const hours = [
@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="py-14 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 border-b border-rim">
           <div>
             <a
-              href="#"
+              href="/"
               className="font-serif text-cream text-3xl font-light italic hover:text-ember transition-colors duration-300 block"
             >
               L&apos;Adresse{" "}
@@ -101,7 +101,7 @@ export default function Footer() {
               </p>
             </address>
             <a
-              href="#infos"
+              href="/#infos"
               className="inline-flex items-center gap-2 mt-5 font-sans text-[10px] tracking-[0.18em] uppercase text-stone hover:text-ember transition-colors duration-200 group"
             >
               <span className="w-4 h-px bg-ember group-hover:w-6 transition-all duration-300" />

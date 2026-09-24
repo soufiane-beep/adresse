@@ -2,10 +2,9 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
+import Nouveaute from "@/components/Nouveaute";
 import Signatures from "@/components/Signatures";
 import Coulisses from "@/components/Coulisses";
-import Menu from "@/components/Menu";
-import PhotoStrip from "@/components/PhotoStrip";
 import Testimonials from "@/components/Testimonials";
 import Info from "@/components/Info";
 import Footer from "@/components/Footer";
@@ -19,10 +18,9 @@ export default function Home() {
         <Hero />
         <Marquee />
         <About />
+        <Nouveaute />
         <Signatures />
         <Coulisses />
-        <Menu />
-        <PhotoStrip />
         <Testimonials />
         <Info />
       </main>

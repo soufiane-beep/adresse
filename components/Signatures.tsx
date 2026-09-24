@@ -9,27 +9,30 @@ const signatures = [
     name: "Sweet Chicken Waffle",
     description:
       "Gaufre de Bruxelles croustillante, poulet caramélisé, oignons crispy, crumble de cacahuètes & sirop d'érable. Notre bestseller depuis le premier jour.",
-    price: "14€",
+    price: "14",
     badge: "Best Seller",
     image: "IMG_3256 19.15.09.jpg",
+    objectPosition: "center",
     imageLeft: true,
   },
   {
     name: "Salmon Brunch Pancakes",
     description:
       "Pancakes moelleux, saumon fumé, guacamole crémeux, pousses fraîches & herbes. L'équilibre parfait entre douceur et fraîcheur.",
-    price: "15€",
+    price: "15",
     badge: null,
     image: "A7403214.jpg",
+    objectPosition: "center 75%",
     imageLeft: false,
   },
   {
     name: "Burrata Crush",
     description:
       "Pain complet toasté, burrata crémeuse, pesto maison, tomates cerises & roquette fraîche. Simple, généreux, inoubliable.",
-    price: "14€",
+    price: "14",
     badge: null,
     image: "IMG_3455.jpg",
+    objectPosition: "center 75%",
     imageLeft: true,
   },
 ];
@@ -67,22 +70,22 @@ export default function Signatures() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.85, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className={`grid grid-cols-1 md:grid-cols-5 border-t border-stone/20 ${
+              className={`grid grid-cols-1 md:grid-cols-5 border-t border-stone/20 md:min-h-[460px] ${
                 i === signatures.length - 1 ? "border-b" : ""
               }`}
             >
               {/* Photo */}
               <div
-                className={`relative overflow-hidden md:col-span-3 ${
+                className={`relative overflow-hidden md:col-span-3 aspect-[4/3] md:aspect-auto ${
                   item.imageLeft ? "md:order-1" : "md:order-2"
                 }`}
-                style={{ minHeight: "clamp(240px, 60vw, 380px)" }}
               >
                 <Image
                   src={`/images/${encodeURIComponent(item.image)}`}
                   alt={item.name}
                   fill
-                  className="object-cover object-center hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                  style={{ objectPosition: item.objectPosition }}
                   sizes="(max-width: 768px) 100vw, 60vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
@@ -111,17 +114,9 @@ export default function Signatures() {
                 <p className="font-sans text-stone text-sm leading-relaxed mb-8">
                   {item.description}
                 </p>
-                <div className="flex items-center gap-4">
-                  <span className="font-serif text-ember text-3xl font-light">
-                    {item.price}
-                  </span>
-                  <a
-                    href="#menu"
-                    className="font-sans text-[10px] tracking-[0.2em] uppercase text-stone hover:text-ink transition-colors duration-200 border-b border-stone/30 hover:border-ink pb-0.5"
-                  >
-                    Voir le menu
-                  </a>
-                </div>
+                <span className="font-serif text-ember text-3xl font-light">
+                  {item.price}
+                </span>
               </div>
             </motion.div>
           ))}

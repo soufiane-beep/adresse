@@ -87,7 +87,8 @@ export default function Coulisses() {
                   src="/images/IMG_3572.jpg"
                   alt="Finitions à la main"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover"
+                  style={{ objectPosition: "center 30%" }}
                   sizes="(max-width: 1024px) 50vw, 30vw"
                 />
               </motion.div>
