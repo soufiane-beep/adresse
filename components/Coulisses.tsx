@@ -26,13 +26,13 @@ export default function Coulisses() {
               Dans nos cuisines
             </span>
             <h2
-              className="font-serif text-parchment font-light leading-tight mb-8"
+              className="font-serif text-cream font-light leading-tight mb-8"
               style={{ fontSize: "clamp(2.4rem, 5vw, 4rem)" }}
             >
               Fait maison,<br />chaque matin
             </h2>
             <div className="w-10 h-px bg-ember mb-8" />
-            <p className="font-sans text-parchment/55 text-sm leading-relaxed max-w-xs">
+            <p className="font-sans text-cream/55 text-sm leading-relaxed max-w-xs">
               Chaque assiette est préparée à la commande, avec des produits frais sélectionnés chaque semaine. Rien n&apos;est préfabriqué — tout naît ici, dans notre cuisine.
             </p>
 
@@ -46,7 +46,7 @@ export default function Coulisses() {
                   className="flex items-center gap-3"
                 >
                   <div className="w-1 h-1 rounded-full bg-ember flex-shrink-0" />
-                  <span className="font-sans text-parchment/45 text-[10px] tracking-[0.2em] uppercase">
+                  <span className="font-sans text-cream/45 text-[10px] tracking-[0.2em] uppercase">
                     {item}
                   </span>
                 </motion.div>
@@ -84,11 +84,11 @@ export default function Coulisses() {
                 style={{ aspectRatio: "4/3" }}
               >
                 <Image
-                  src="/images/IMG_3572.jpg"
+                  src="/images/IMG_3601-2.jpg"
                   alt="Finitions à la main"
                   fill
                   className="object-cover"
-                  style={{ objectPosition: "center 30%" }}
+                  style={{ objectPosition: "center 78%" }}
                   sizes="(max-width: 1024px) 50vw, 30vw"
                 />
               </motion.div>

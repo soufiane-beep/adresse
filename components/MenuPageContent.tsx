@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { Eye } from "lucide-react";
 import type { MenuCategory } from "@/components/MenuData";
+import PdfMenuViewer from "@/components/PdfMenuViewer";
 
 const toSlug = (s: string) =>
   s
@@ -115,7 +117,7 @@ function MenuCard({
           <h3 className="font-serif text-parchment text-[0.85rem] md:text-[1.05rem] font-medium leading-snug flex-1">
             {name}
           </h3>
-          <span className="font-sans font-semibold text-ember text-[0.75rem] md:text-sm flex-shrink-0 mb-0.5">
+          <span className="font-sans font-bold text-parchment text-[0.85rem] md:text-base flex-shrink-0 mb-0.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
             {price}
           </span>
         </div>
@@ -170,6 +172,13 @@ function TextRow({
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
+export interface MenuPdf {
+  label: string;
+  href: string;
+  slug: string;
+  pageCount: number;
+}
+
 export interface MenuVariant {
   data: MenuCategory[];
   imageDir: string;
@@ -179,6 +188,7 @@ export interface MenuVariant {
   title: string;
   tagline: string;
   description: string;
+  pdfs?: MenuPdf[];
 }
 
 interface MenuPageContentProps {
@@ -200,6 +210,7 @@ export default function MenuPageContent({ day, soir, initialTheme }: MenuPageCon
     title,
     tagline,
     description,
+    pdfs,
   } = variant;
 
   const switchTheme = (t: "day" | "soir") => {
@@ -211,6 +222,7 @@ export default function MenuPageContent({ day, soir, initialTheme }: MenuPageCon
 
   const [activeSlug, setActiveSlug] = useState(toSlug(data[0].category));
   const [zoomImage, setZoomImage] = useState<{ src: string; name: string } | null>(null);
+  const [pdfViewerOpen, setPdfViewerOpen] = useState(false);
   const pillBarRef = useRef<HTMLDivElement>(null);
 
   const categorySlugs = data.map((cat) => ({
@@ -372,33 +384,45 @@ export default function MenuPageContent({ day, soir, initialTheme }: MenuPageCon
           dark ? "bg-ink border-cream-dim/15" : "bg-parchment border-stone/15"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-3 md:py-4 flex items-center gap-3">
-          <button
-            onClick={() => switchTheme("day")}
-            aria-pressed={theme === "day"}
-            className={`px-4 py-2 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase transition-colors duration-200 ${
-              theme === "day"
-                ? "bg-ember text-parchment"
-                : dark
-                  ? "text-cream-dim hover:text-cream border border-cream-dim/20"
-                  : "text-stone hover:text-ink border border-stone/20"
-            }`}
-          >
-            Menu du Jour
-          </button>
-          <button
-            onClick={() => switchTheme("soir")}
-            aria-pressed={theme === "soir"}
-            className={`px-4 py-2 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase transition-colors duration-200 ${
-              theme === "soir"
-                ? "bg-ember text-parchment"
-                : dark
-                  ? "text-cream-dim hover:text-cream border border-cream-dim/20"
-                  : "text-stone hover:text-ink border border-stone/20"
-            }`}
-          >
-            Menu du Soir
-          </button>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-3 md:py-4">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => switchTheme("day")}
+              aria-pressed={theme === "day"}
+              className={`px-4 py-2 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase transition-colors duration-200 ${
+                theme === "day"
+                  ? "bg-ember text-parchment"
+                  : dark
+                    ? "text-cream-dim hover:text-cream border border-cream-dim/20"
+                    : "text-stone hover:text-ink border border-stone/20"
+              }`}
+            >
+              Menu du Jour
+            </button>
+            <button
+              onClick={() => switchTheme("soir")}
+              aria-pressed={theme === "soir"}
+              className={`px-4 py-2 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase transition-colors duration-200 ${
+                theme === "soir"
+                  ? "bg-ember text-parchment"
+                  : dark
+                    ? "text-cream-dim hover:text-cream border border-cream-dim/20"
+                    : "text-stone hover:text-ink border border-stone/20"
+              }`}
+            >
+              Menu du Soir
+            </button>
+          </div>
+
+          {pdfs && pdfs.length > 0 && (
+            <button
+              onClick={() => setPdfViewerOpen(true)}
+              className="mt-3 flex items-center gap-2 px-5 py-2.5 text-[10px] font-sans font-bold tracking-[0.2em] uppercase bg-ember text-parchment shadow-md shadow-ember/30 hover:bg-ember/90 hover:shadow-lg transition-all duration-200"
+            >
+              <Eye size={14} />
+              Voir la carte complète
+            </button>
+          )}
         </div>
 
         {/* Mobile pill bar — sticky et overflow-x-auto séparés — évite le blocage scroll iOS Safari */}
@@ -602,6 +626,13 @@ export default function MenuPageContent({ day, soir, initialTheme }: MenuPageCon
           </div>
         </div>
       </motion.div>
+      </AnimatePresence>
+
+      {/* ── PDF menu viewer ── */}
+      <AnimatePresence>
+        {pdfViewerOpen && pdfs && pdfs.length > 0 && (
+          <PdfMenuViewer docs={pdfs} onClose={() => setPdfViewerOpen(false)} />
+        )}
       </AnimatePresence>
 
       {/* ── Image zoom modal ── */}

@@ -65,12 +65,12 @@ export const menu: MenuCategory[] = [
         objectPosition: "center bottom",
       },
       {
-        name: "Pink Curry Curcuma",
-        description: "Pain complet, poulet fondant au curry & curcuma maison, pommes croquantes & raisins secs",
+        name: "Msemen Nomade",
+        description: "Msemen grillé, feta, tomates cerises & séchées, roquette, noix & filet de miel",
         price: "13",
         badge: null,
-        image: "A7400178.jpg",
-        objectPosition: "center",
+        image: "A7406821.jpg",
+        objectPosition: "center 65%",
       },
       {
         name: "Pure Green",

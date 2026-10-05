@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const navLinks = [
   { label: "Concept", href: "/#concept" },
   { label: "Menu", href: "/menu" },
@@ -8,8 +10,9 @@ const navLinks = [
 ];
 
 const hours = [
-  { days: "Lundi – Vendredi", time: "10h – 18h" },
-  { days: "Samedi – Dimanche", time: "9h – 18h" },
+  { days: "Lundi – Vendredi", time: "9h – 17h" },
+  { days: "Samedi – Dimanche", time: "10h – 17h" },
+  { days: "Vendredi – Samedi soir", time: "18h30 – 21h30" },
 ];
 
 const InstagramIcon = () => (
@@ -26,14 +29,16 @@ export default function Footer() {
         {/* Brand header */}
         <div className="py-14 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 border-b border-rim">
           <div>
-            <a
-              href="/"
-              className="font-serif text-cream text-3xl font-light italic hover:text-ember transition-colors duration-300 block"
-            >
-              L&apos;Adresse{" "}
-              <span className="not-italic font-semibold text-ember">86</span>
+            <a href="/" className="inline-block hover:opacity-80 transition-opacity duration-300">
+              <Image
+                src="/logo-beige-a86.png"
+                alt="L'Adresse 86"
+                width={1000}
+                height={83}
+                className="h-7 md:h-8 w-auto"
+              />
             </a>
-            <p className="font-sans text-stone text-[10px] tracking-[0.3em] uppercase mt-2">
+            <p className="font-sans text-stone text-[10px] tracking-[0.3em] uppercase mt-3">
               Brunch &amp; Specialty Coffee · Liège
             </p>
           </div>
@@ -94,10 +99,10 @@ export default function Footer() {
             </p>
             <address className="not-italic flex flex-col gap-1">
               <p className="font-serif text-cream text-base font-light leading-snug">
-                Rue du Parc des Oblats
+                Rue Eugène Vandenhoff 86
               </p>
               <p className="font-sans text-stone text-[11px] tracking-wide">
-                4020 Liège, Belgique
+                4030 Liège, Belgique
               </p>
             </address>
             <a

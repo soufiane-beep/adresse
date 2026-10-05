@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -15,8 +16,8 @@ const links = [
 const PARCHMENT_RGB = [242, 232, 212] as const;
 // surface-2 rgb(61, 40, 18) — dark-theme counterpart, used on /menu/soir
 const SURFACE_RGB = [61, 40, 18] as const;
-// cream #F5ECD8 → ink #2C1A0E — used for logo color interpolation
-const CREAM = [245, 236, 216] as const;
+// cream #D4C2AC → ink #2C1A0E — used for hamburger color interpolation
+const CREAM = [212, 194, 172] as const;
 const INK = [44, 26, 14] as const;
 
 function lerp(from: readonly number[], to: readonly number[], t: number) {
@@ -28,20 +29,19 @@ function getOpenStatus(): { isOpen: boolean; label: string } {
   const day = now.getDay();
   const h = now.getHours() + now.getMinutes() / 60;
   const isWeekend = day === 0 || day === 6;
-  const openH = isWeekend ? 9 : 10;
-  const closeH = 18;
+  const openH = isWeekend ? 10 : 9;
+  const closeH = 17;
   if (h >= openH && h < closeH) return { isOpen: true, label: `Ouvert · Ferme à ${closeH}h` };
   if (h < openH) return { isOpen: false, label: `Fermé · Ouvre à ${openH}h` };
   const dayNames = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
   const nextDay = (day + 1) % 7;
-  const nextOpenH = nextDay === 0 || nextDay === 6 ? 9 : 10;
+  const nextOpenH = nextDay === 0 || nextDay === 6 ? 10 : 9;
   return { isOpen: false, label: `Fermé · Ouvre ${dayNames[nextDay]} à ${nextOpenH}h` };
 }
 
 export default function Nav() {
   const [scrollY, setScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [logoHovered, setLogoHovered] = useState(false);
   const [status] = useState(getOpenStatus);
   const pathname = usePathname();
   const [darkOverride, setDarkOverride] = useState<boolean | null>(null);
@@ -71,8 +71,10 @@ export default function Nav() {
   // 0 → 1 over the first 80px of scroll
   const p = Math.min(scrollY / 80, 1);
   const scrolled = scrollY > 60;
+  // The logo art is a solid beige silhouette; on light backgrounds it reads
+  // too close to the parchment bg, so it's flipped to a dark ink silhouette.
+  const logoOnLight = scrolled && !dark;
 
-  const logoColor = logoHovered ? "#B87230" : lerp(CREAM, dark ? CREAM : INK, p);
   const hamburgerColor = lerp(CREAM, dark ? CREAM : INK, p);
   const navBgStyle = {
     backgroundColor: `rgba(${(dark ? SURFACE_RGB : PARCHMENT_RGB).join(",")}, ${Math.min(p * 1.1, 0.97)})`,
@@ -89,20 +91,25 @@ export default function Nav() {
       }`}
       style={navBgStyle}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-serif text-xl md:text-2xl font-light italic tracking-wide transition-colors duration-150"
-          style={{ color: logoColor }}
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
-        >
-          L&apos;Adresse{" "}
-          <span className="not-italic font-semibold text-ember">86</span>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center justify-between gap-6">
+        <Link href="/" className="transition-opacity duration-150 hover:opacity-80">
+          <Image
+            src="/logo-beige-a86.png"
+            alt="L'Adresse 86"
+            width={1000}
+            height={83}
+            priority
+            className="h-5 md:h-6 w-auto transition-[filter] duration-300"
+            style={
+              logoOnLight
+                ? { filter: "brightness(0) opacity(0.85)" }
+                : { filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }
+            }
+          />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-10">
           {links.map((l) => {
             const isActive = l.href === "/menu" && pathname.startsWith("/menu");
             return (
@@ -127,7 +134,7 @@ export default function Nav() {
             );
           })}
 
-          <div className="flex items-center gap-1.5">
+          <div className="hidden xl:flex items-center gap-1.5">
             <span
               className={`w-1.5 h-1.5 rounded-full animate-pulse-slow ${
                 status.isOpen ? "bg-green-500" : "bg-stone/50"
@@ -146,7 +153,7 @@ export default function Nav() {
             href="https://www.instagram.com/ladresse86/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`ml-2 text-[10px] font-sans font-medium tracking-[0.2em] uppercase transition-colors duration-300 ${
+            className={`hidden xl:inline-block ml-2 text-[10px] font-sans font-medium tracking-[0.2em] uppercase transition-colors duration-300 ${
               scrolled
                 ? dark
                   ? "text-cream-dim hover:text-cream"

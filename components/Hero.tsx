@@ -47,38 +47,22 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-20 text-center px-6 max-w-5xl mx-auto w-full">
-        {/* Location label */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="font-sans text-[9px] tracking-[0.4em] uppercase text-stone mb-8"
-        >
-          Parc des Oblats &nbsp;·&nbsp; Liège, Belgique
-        </motion.p>
-
-        {/* Brand name */}
-        <motion.h1
+        {/* Brand logo */}
+        <motion.div
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-cream italic font-light leading-[0.88] tracking-tight mb-6"
-          style={{ fontSize: "clamp(4.5rem, 14vw, 11rem)" }}
+          className="mb-8 flex justify-center"
         >
-          L&apos;Adresse
-        </motion.h1>
-
-        {/* Divider rule with "86" */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-center gap-5 mb-6"
-          style={{ transformOrigin: "center" }}
-        >
-          <div className="h-px w-24 bg-gradient-to-r from-transparent to-rim/80" />
-          <span className="font-serif text-ember italic font-light text-2xl tracking-widest">86</span>
-          <div className="h-px w-24 bg-gradient-to-l from-transparent to-rim/80" />
+          <Image
+            src="/logo-hero-a86.png"
+            alt="L'Adresse 86"
+            width={600}
+            height={842}
+            priority
+            className="w-auto h-auto"
+            style={{ width: "clamp(110px, 12vw, 170px)" }}
+          />
         </motion.div>
 
         {/* Tagline */}
@@ -88,7 +72,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.88, ease: "easeOut" }}
           className="font-sans text-stone text-[10px] tracking-[0.32em] uppercase mb-12"
         >
-          Brunch &amp; Coffee &nbsp;·&nbsp; Ouvert 7j/7
+          Lun–Ven 9h–17h &nbsp;·&nbsp; Week-end 10h–17h &nbsp;·&nbsp; Soir Ven–Sam 18h30–21h30
         </motion.p>
 
         {/* CTAs */}
@@ -100,7 +84,7 @@ export default function Hero() {
         >
           <a
             href="/menu"
-            className="px-8 py-3.5 bg-ember text-ink font-sans font-semibold text-[10px] tracking-[0.22em] uppercase hover:bg-ember-light transition-all duration-200 min-w-[180px] text-center"
+            className="px-8 py-3.5 bg-ember text-parchment font-sans font-semibold text-[10px] tracking-[0.22em] uppercase hover:bg-ember-light transition-all duration-200 min-w-[180px] text-center"
           >
             Voir le menu
           </a>

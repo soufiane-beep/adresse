@@ -7,7 +7,9 @@ import Image from "next/image";
 const pillars = [
   { label: "Fait maison", sub: "Chaque jour" },
   { label: "Café de spécialité", sub: "Artisanal" },
-  { label: "7j/7", sub: "Dès 10h" },
+  { label: "Lun–Ven", sub: "9h–17h" },
+  { label: "Week-end", sub: "10h–17h" },
+  { label: "Soir Ven–Sam", sub: "18h30–21h30" },
 ];
 
 const containerVariants: Variants = {
@@ -49,21 +51,20 @@ export default function About() {
         >
           {/* Text side */}
           <div className="order-2 lg:order-1">
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-ember">
-                Notre concept
-              </span>
-            </motion.div>
-
             <motion.h2
               variants={itemVariants}
-              className="font-serif text-ink font-light leading-[1.05] mb-8"
+              className="font-serif text-ink font-light leading-[1.05] mb-4"
               style={{ fontSize: "clamp(2.8rem, 6vw, 4.5rem)" }}
             >
-              Un matin comme
-              <br />
-              <em className="italic text-ember">on les aime</em>
+              Notre concept
             </motion.h2>
+
+            <motion.p
+              variants={itemVariants}
+              className="font-sans font-black text-ember text-sm sm:text-base tracking-wide uppercase mb-8"
+            >
+              Un lieu, une pause, une émotion.
+            </motion.p>
 
             <motion.div variants={itemVariants} className="w-8 h-px bg-stone/30 mb-8" />
 
@@ -71,15 +72,16 @@ export default function About() {
               variants={itemVariants}
               className="font-sans text-ink/65 text-base leading-relaxed mb-10 max-w-lg"
             >
-              Un lieu de vie chaleureux au cœur du Parc des Oblats. Chez L&apos;Adresse 86,
-              chaque brunch est une invitation à ralentir, savourer, et profiter des choses
-              simples — pain frais, œufs parfaits, café de spécialité.
+              Un lieu chaleureux où l&apos;on vient prendre le temps de savourer. À L&apos;Adresse 86,
+              chaque brunch est une parenthèse gourmande, entre produits frais, douceurs faites
+              maison et café soigneusement préparé. Un endroit pensé pour se retrouver, partager
+              et profiter simplement du moment.
             </motion.p>
 
             {/* Pillars */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-3 gap-2 sm:gap-4 border-t border-stone/20 pt-8"
+              className="grid grid-cols-2 gap-x-4 gap-y-8 border-t border-stone/20 pt-8"
             >
               {pillars.map((p) => (
                 <div key={p.label}>
@@ -98,29 +100,13 @@ export default function About() {
             {/* Main image */}
             <div className="relative aspect-[3/4] overflow-hidden">
               <Image
-                src="/images/A7403289.jpg"
+                src="/images/new/A7406875.jpg"
                 alt="Douceurs de L'Adresse 86"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-
-            {/* Overlapping secondary image — hidden on mobile to avoid overflow */}
-            <motion.div
-              initial={{ opacity: 0, x: 30, y: -20 }}
-              animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
-              transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="hidden sm:block absolute -bottom-8 -left-8 w-44 h-52 md:w-52 md:h-64 overflow-hidden border-4 border-parchment shadow-2xl"
-            >
-              <Image
-                src="/images/A7400225.jpg"
-                alt="Café de spécialité L'Adresse 86"
-                fill
-                className="object-cover object-center"
-                sizes="220px"
-              />
-            </motion.div>
 
             {/* Location badge */}
             <motion.div

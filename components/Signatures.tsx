@@ -6,34 +6,25 @@ import Image from "next/image";
 
 const signatures = [
   {
+    name: "Moroccan Breakfast",
+    description:
+      "Msemen accompagné de miel, fromage frais, 2 œufs au plat, pain, smoothie & boisson chaude (thé marocain ou café au lait).",
+    price: "15",
+    badge: "Best Seller",
+    image: "IMG_4213.JPG",
+    objectPosition: "center 85%",
+    imageLeft: true,
+  },
+  {
     name: "Sweet Chicken Waffle",
     description:
-      "Gaufre de Bruxelles croustillante, poulet caramélisé, oignons crispy, crumble de cacahuètes & sirop d'érable. Notre bestseller depuis le premier jour.",
+      "Gaufre de Bruxelles, poulet caramélisé, crudités, oignons crispy, crumble de cacahuètes & sirop d'érable. Le mariage sucré-salé signature 86.",
     price: "14",
-    badge: "Best Seller",
+    badge: null,
     image: "IMG_3256 19.15.09.jpg",
-    objectPosition: "center",
-    imageLeft: true,
-  },
-  {
-    name: "Salmon Brunch Pancakes",
-    description:
-      "Pancakes moelleux, saumon fumé, guacamole crémeux, pousses fraîches & herbes. L'équilibre parfait entre douceur et fraîcheur.",
-    price: "15",
-    badge: null,
-    image: "A7403214.jpg",
-    objectPosition: "center 75%",
+    objectPosition: "center 40%",
+    imageAspect: "aspect-[4/5]",
     imageLeft: false,
-  },
-  {
-    name: "Burrata Crush",
-    description:
-      "Pain complet toasté, burrata crémeuse, pesto maison, tomates cerises & roquette fraîche. Simple, généreux, inoubliable.",
-    price: "14",
-    badge: null,
-    image: "IMG_3455.jpg",
-    objectPosition: "center 75%",
-    imageLeft: true,
   },
 ];
 
@@ -51,9 +42,6 @@ export default function Signatures() {
           transition={{ duration: 0.75 }}
           className="mb-20"
         >
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-ember block mb-4">
-            À la une
-          </span>
           <h2
             className="font-serif text-ink font-light leading-tight"
             style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)" }}
@@ -76,9 +64,9 @@ export default function Signatures() {
             >
               {/* Photo */}
               <div
-                className={`relative overflow-hidden md:col-span-3 aspect-[4/3] md:aspect-auto ${
-                  item.imageLeft ? "md:order-1" : "md:order-2"
-                }`}
+                className={`relative overflow-hidden md:col-span-3 ${
+                  "imageAspect" in item && item.imageAspect ? item.imageAspect : "aspect-[4/3] md:aspect-auto"
+                } ${item.imageLeft ? "md:order-1" : "md:order-2"}`}
               >
                 <Image
                   src={`/images/${encodeURIComponent(item.image)}`}
@@ -98,7 +86,8 @@ export default function Signatures() {
                 }`}
               >
                 {item.badge && (
-                  <span className="inline-block font-sans text-[8px] tracking-[0.2em] uppercase bg-ember text-parchment px-2.5 py-1 mb-5 self-start">
+                  <span className="inline-flex items-center gap-2 font-sans font-black text-xs tracking-[0.35em] uppercase bg-ember text-parchment px-4 py-2.5 mb-6 self-start">
+                    <span className="w-2 h-2 rounded-full bg-parchment" />
                     {item.badge}
                   </span>
                 )}

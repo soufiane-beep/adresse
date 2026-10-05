@@ -29,18 +29,18 @@ export default function Nouveaute() {
             transition={{ duration: 0.75 }}
             className="lg:w-2/5 flex-shrink-0"
           >
-            <span className="inline-flex items-center gap-2 font-sans text-[9px] tracking-[0.35em] uppercase bg-ember text-parchment px-3 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-parchment animate-pulse-slow" />
+            <span className="inline-flex items-center gap-2 font-sans font-black text-xs tracking-[0.35em] uppercase bg-ember text-parchment px-4 py-2.5 mb-6">
+              <span className="w-2 h-2 rounded-full bg-parchment animate-pulse-slow" />
               C&apos;est nouveau
             </span>
             <h2
-              className="font-serif text-parchment font-light leading-tight mb-8"
+              className="font-serif text-cream font-light leading-tight mb-8"
               style={{ fontSize: "clamp(2.4rem, 5vw, 4rem)" }}
             >
               Après le jour,<br />place à la nuit
             </h2>
             <div className="w-10 h-px bg-ember mb-8" />
-            <p className="font-sans text-parchment/55 text-sm leading-relaxed max-w-xs">
+            <p className="font-sans text-cream/55 text-sm leading-relaxed max-w-xs">
               L&apos;Adresse 86 se réinvente à la tombée du jour : kémias à partager, Medina Roll doré, formules généreuses et cocktails maison, entre saveurs marocaines et créations signature.
             </p>
 
@@ -54,7 +54,7 @@ export default function Nouveaute() {
                   className="flex items-center gap-3"
                 >
                   <div className="w-1 h-1 rounded-full bg-ember flex-shrink-0" />
-                  <span className="font-sans text-parchment/45 text-[10px] tracking-[0.2em] uppercase">
+                  <span className="font-sans text-cream/45 text-[10px] tracking-[0.2em] uppercase">
                     {item}
                   </span>
                 </motion.div>
@@ -71,7 +71,7 @@ export default function Nouveaute() {
                 href="/menu/soir"
                 className="group relative inline-flex items-center gap-4 font-sans text-[11px] tracking-[0.3em] uppercase"
               >
-                <span className="relative z-10 bg-ember text-ink px-10 py-5 group-hover:bg-ember-light transition-colors duration-500">
+                <span className="relative z-10 bg-ember text-parchment px-10 py-5 group-hover:bg-ember-light transition-colors duration-500">
                   Découvrir le menu du soir
                 </span>
                 <span className="absolute -bottom-1 -right-1 w-full h-full border border-parchment/20 group-hover:border-ember/40 transition-colors duration-500" />

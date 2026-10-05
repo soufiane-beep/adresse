@@ -8,13 +8,13 @@ function getOpenStatus(): { isOpen: boolean; label: string } {
   const day = now.getDay();
   const h = now.getHours() + now.getMinutes() / 60;
   const isWeekend = day === 0 || day === 6;
-  const openH = isWeekend ? 9 : 10;
-  const closeH = 18;
+  const openH = isWeekend ? 10 : 9;
+  const closeH = 17;
   if (h >= openH && h < closeH) return { isOpen: true, label: `Ouvert en ce moment · Ferme à ${closeH}h` };
   if (h < openH) return { isOpen: false, label: `Fermé · Ouvre aujourd'hui à ${openH}h` };
   const dayNames = ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
   const nextDay = (day + 1) % 7;
-  const nextOpenH = nextDay === 0 || nextDay === 6 ? 9 : 10;
+  const nextOpenH = nextDay === 0 || nextDay === 6 ? 10 : 9;
   return { isOpen: false, label: `Fermé · Ouvre ${dayNames[nextDay]} à ${nextOpenH}h` };
 }
 
@@ -29,8 +29,9 @@ const itemVariants: Variants = {
 };
 
 const hours = [
-  { day: "Lundi – Vendredi", time: "10h00 – 18h00" },
-  { day: "Samedi – Dimanche", time: "09h00 – 18h00" },
+  { day: "Lundi – Vendredi", time: "09h00 – 17h00" },
+  { day: "Samedi – Dimanche", time: "10h00 – 17h00" },
+  { day: "Vendredi – Samedi soir", time: "18h30 – 21h30" },
 ];
 
 export default function Info() {
@@ -48,7 +49,7 @@ export default function Info() {
           transition={{ duration: 0.75 }}
           className="mb-16"
         >
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-ember block mb-4">
+          <span className="font-sans font-black text-[11px] tracking-[0.3em] uppercase text-ember block mb-4">
             Venir nous voir
           </span>
           <h2
@@ -73,9 +74,9 @@ export default function Info() {
                 Adresse
               </p>
               <p className="font-serif text-ink text-2xl font-light leading-snug">
-                Rue du Parc des Oblats
+                Rue Eugène Vandenhoff 86
               </p>
-              <p className="font-sans text-stone text-sm mt-1">4020 Liège, Belgique</p>
+              <p className="font-sans text-stone text-sm mt-1">4030 Liège, Belgique</p>
             </motion.div>
 
             {/* Hours */}
@@ -138,15 +139,22 @@ export default function Info() {
             {/* Ember corner accent */}
             <div className="absolute top-0 left-0 w-8 h-1 bg-ember z-10" />
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2516.5!2d5.5714!3d50.6397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDM4JzIyLjkiTiA1wrAzNCcxNy4wIkU!5e0!3m2!1sfr!2sbe!4v1699000000000!5m2!1sfr!2sbe"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=5.5987906%2C50.6273608%2C5.6067906%2C50.6333608&layer=mapnik&marker=50.6303608%2C5.6027906"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: "420px", display: "block" }}
-              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="L'Adresse 86 — Parc des Oblats, Liège"
+              title="L'Adresse 86 — Rue Eugène Vandenhoff 86, Liège"
             />
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Rue+Eug%C3%A8ne+Vandenhoff+86%2C+4030+Li%C3%A8ge"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-3 right-3 z-10 bg-parchment/95 text-ink text-[10px] font-sans font-medium tracking-[0.15em] uppercase px-3 py-2 hover:bg-parchment transition-colors duration-200"
+            >
+              Ouvrir dans Google Maps
+            </a>
           </motion.div>
         </div>
       </div>

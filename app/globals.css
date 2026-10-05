@@ -6,10 +6,10 @@
   --ink: #0B0907;
   --surface: #161009;
   --surface-2: #1E1610;
-  --ember: #C4773C;
-  --ember-light: #D49355;
+  --ember: #A6401B;
+  --ember-light: #966359;
   --blush: #C8756E;
-  --cream: #EEE6D8;
+  --cream: #D4C2AC;
   --cream-dim: #A89E94;
   --stone: #6B6058;
   --rim: #2A2018;
@@ -23,7 +23,7 @@ html {
 body {
   background-color: #F2E8D4;
   color: #2C1A0E;
-  font-family: var(--font-syne), system-ui, sans-serif;
+  font-family: "Avenir Next", Avenir, var(--font-jost), "Segoe UI", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
