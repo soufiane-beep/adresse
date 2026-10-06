@@ -13,14 +13,14 @@ export default function Coulisses() {
   return (
     <section ref={ref} className="bg-ink py-28 md:py-40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-24 items-center">
 
           {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.75 }}
-            className="lg:w-2/5 flex-shrink-0"
+            className="lg:col-span-2"
           >
             <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-ember block mb-4">
               Dans nos cuisines
@@ -55,7 +55,7 @@ export default function Coulisses() {
           </motion.div>
 
           {/* Photos — editorial grid */}
-          <div className="lg:w-3/5 w-full flex-shrink-0">
+          <div className="lg:col-span-3 w-full">
             <div className="grid grid-cols-2 gap-2">
 
               {/* Large top photo — full width */}

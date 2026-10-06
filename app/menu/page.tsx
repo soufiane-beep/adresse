@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import MenuPageContent from "@/components/MenuPageContent";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { dayVariant, soirVariant } from "@/components/MenuVariants";
 
 export const metadata: Metadata = {
@@ -27,7 +26,6 @@ export default function MenuPage() {
         <MenuPageContent day={dayVariant} soir={soirVariant} initialTheme="day" />
       </main>
       <Footer />
-      <WhatsAppButton />
     </>
   );
 }

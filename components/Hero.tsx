@@ -61,7 +61,7 @@ export default function Hero() {
             height={842}
             priority
             className="w-auto h-auto"
-            style={{ width: "clamp(110px, 12vw, 170px)" }}
+            style={{ width: "clamp(80px, 9vw, 130px)" }}
           />
         </motion.div>
 
@@ -90,7 +90,7 @@ export default function Hero() {
           </a>
           <a
             href="#infos"
-            className="px-8 py-3.5 border border-rim text-cream-dim font-sans font-medium text-[10px] tracking-[0.22em] uppercase hover:border-stone hover:text-cream transition-all duration-300 min-w-[180px] text-center"
+            className="px-8 py-3.5 border-2 border-cream text-cream font-sans font-semibold text-[10px] tracking-[0.22em] uppercase hover:bg-cream hover:text-ink transition-all duration-300 min-w-[180px] text-center"
           >
             Nous trouver
           </a>
