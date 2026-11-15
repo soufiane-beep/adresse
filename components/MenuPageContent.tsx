@@ -353,6 +353,7 @@ export default function MenuPageContent({ day, soir, initialTheme }: MenuPageCon
             style={{ fontSize: "clamp(3rem, 10vw, 7.5rem)" }}
           >
             {title}
+            <span className="sr-only"> — L&apos;Adresse 86, Liège</span>
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}

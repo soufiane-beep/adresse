@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cinzel, Jost } from "next/font/google";
 import "./globals.css";
+import { SITE_NAME, SITE_URL, restaurantJsonLd } from "@/lib/site";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -16,26 +17,54 @@ const jost = Jost({
   display: "swap",
 });
 
+const description =
+  "Brunch fait maison et café de spécialité à Liège (Grivegnée). Carte du soir aux saveurs marocaines le vendredi et samedi, options sans gluten. Lun–Ven 9h–17h · Week-end 10h–17h.";
+
 export const metadata: Metadata = {
-  title: "L'Adresse 86 — Brunch & Coffee · Liège",
-  description:
-    "Un lieu de vie chaleureux à Liège. Brunch fait maison, café de spécialité. Lun–Ven 9h–17h · Week-end 10h–17h.",
-  keywords: ["brunch liège", "coffee liège", "café spécialité", "ladresse86"],
-  authors: [{ name: "L'Adresse 86" }],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "L'Adresse 86 — Brunch & Coffee à Liège",
+    template: "%s · L'Adresse 86",
+  },
+  description,
+  keywords: [
+    "brunch liège",
+    "brunch grivegnée",
+    "coffee shop liège",
+    "café de spécialité liège",
+    "petit-déjeuner liège",
+    "brunch sans gluten liège",
+    "restaurant marocain liège",
+    "L'Adresse 86",
+    "ladresse86",
+  ],
+  authors: [{ name: SITE_NAME }],
+  applicationName: SITE_NAME,
+  category: "restaurant",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   openGraph: {
-    title: "L'Adresse 86 — Brunch & Coffee · Liège",
-    description:
-      "Un lieu de vie chaleureux à Liège. Brunch fait maison, café de spécialité.",
-    url: "https://ladresse86.be",
-    siteName: "L'Adresse 86",
+    title: "L'Adresse 86 — Brunch & Coffee à Liège",
+    description,
+    url: "/",
+    siteName: SITE_NAME,
     locale: "fr_BE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "L'Adresse 86 — Brunch & Coffee · Liège",
-    description: "Un lieu de vie chaleureux à Liège. Brunch fait maison, café de spécialité.",
+    title: "L'Adresse 86 — Brunch & Coffee à Liège",
+    description,
   },
+  formatDetection: { telephone: false },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#2C1A0E",
 };
 
 export default function RootLayout({
@@ -44,8 +73,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr-BE">
       <body className={`${cinzel.variable} ${jost.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantJsonLd) }}
+        />
         {children}
       </body>
     </html>

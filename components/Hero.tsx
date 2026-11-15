@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Background image — real local photo */}
       <Image
         src="/images/A7403214.jpg"
-        alt="L'Adresse 86 — Brunch Liège"
+        alt="Assiette brunch fait maison à L'Adresse 86, Liège"
         fill
         priority
         className="object-cover"
@@ -47,6 +47,7 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-20 text-center px-6 max-w-5xl mx-auto w-full">
+        <h1 className="sr-only">L&apos;Adresse 86 — Brunch &amp; café de spécialité à Liège</h1>
         {/* Brand logo */}
         <motion.div
           initial={{ opacity: 0, y: 36 }}
@@ -56,7 +57,8 @@ export default function Hero() {
         >
           <Image
             src="/logo-hero-a86.png"
-            alt="L'Adresse 86"
+            alt=""
+            aria-hidden="true"
             width={600}
             height={842}
             priority
