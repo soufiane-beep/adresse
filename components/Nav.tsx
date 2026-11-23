@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { openBooking } from "@/lib/booking";
 
 const links = [
   { label: "Concept", href: "/#concept" },
@@ -166,6 +167,7 @@ export default function Nav() {
 
           <button
             type="button"
+            onClick={openBooking}
             className="px-5 py-2 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase bg-ember text-parchment hover:bg-ember-light transition-colors duration-200"
           >
             Réserver une table
@@ -229,7 +231,10 @@ export default function Nav() {
               })}
               <button
                 type="button"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  openBooking();
+                }}
                 className="mt-2 px-5 py-3 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase bg-ember text-parchment text-center"
               >
                 Réserver une table

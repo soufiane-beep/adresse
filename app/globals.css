@@ -85,3 +85,33 @@ body {
 .animate-scroll-right:hover {
   animation-play-state: paused;
 }
+
+/* Restomax Book widget — opened from our own "Réserver" buttons only */
+iframe[title="restomaxbook-widget-toggle"] {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@media (min-width: 640px) {
+  #restomaxbook-widget__container:has(iframe[title="restomaxbook-widget"])::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: rgba(26, 10, 5, 0.6);
+    backdrop-filter: blur(3px);
+    cursor: pointer;
+  }
+
+  iframe[title="restomaxbook-widget"] {
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%);
+    width: 460px !important;
+    height: min(720px, calc(100dvh - 48px)) !important;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(26, 10, 5, 0.45);
+  }
+}

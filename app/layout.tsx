@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Cinzel, Jost } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 import { SITE_NAME, SITE_URL, restaurantJsonLd } from "@/lib/site";
+import { RESTOMAX_STORE_UID, RESTOMAX_WIDGET_SRC } from "@/lib/booking";
+import BookingWidget from "@/components/BookingWidget";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -80,6 +83,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantJsonLd) }}
         />
         {children}
+        <Script id="restomaxbook-config" strategy="afterInteractive">
+          {`window.RestomaxBook = { storeUid: '${RESTOMAX_STORE_UID}' };`}
+        </Script>
+        <Script id="restomaxbook-widget-injector" src={RESTOMAX_WIDGET_SRC} strategy="afterInteractive" />
+        <BookingWidget />
       </body>
     </html>
   );

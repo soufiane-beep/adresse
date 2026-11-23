@@ -17,7 +17,7 @@ export const restaurantJsonLd = {
   menu: `${SITE_URL}/menu`,
   hasMenu: [`${SITE_URL}/menu`, `${SITE_URL}/menu/soir`],
   servesCuisine: ["Brunch", "Café", "Marocaine", "Sans gluten"],
-  acceptsReservations: false,
+  acceptsReservations: true,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Rue Eugène Vandenhoff 86",
