@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { openBooking } from "@/lib/booking";
+import { BOOKING_URL } from "@/lib/booking";
 
 const links = [
   { label: "Concept", href: "/#concept" },
@@ -165,13 +165,14 @@ export default function Nav() {
             Instagram
           </a>
 
-          <button
-            type="button"
-            onClick={openBooking}
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-5 py-2 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase bg-ember text-parchment hover:bg-ember-light transition-colors duration-200"
           >
             Réserver une table
-          </button>
+          </a>
         </nav>
 
         {/* Mobile hamburger */}
@@ -229,16 +230,15 @@ export default function Nav() {
                   </Link>
                 );
               })}
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  openBooking();
-                }}
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
                 className="mt-2 px-5 py-3 text-[10px] font-sans font-semibold tracking-[0.2em] uppercase bg-ember text-parchment text-center"
               >
                 Réserver une table
-              </button>
+              </a>
               <a
                 href="https://www.instagram.com/ladresse86/"
                 target="_blank"

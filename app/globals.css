@@ -86,11 +86,7 @@ body {
   animation-play-state: paused;
 }
 
-/* Restomax Book widget — opened from our own "Réserver" buttons only */
-iframe[title="restomaxbook-widget-toggle"] {
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
+/* Restomax Book widget — panel shown as a centered modal on desktop */
 
 @media (min-width: 640px) {
   #restomaxbook-widget__container:has(iframe[title="restomaxbook-widget"])::before {
