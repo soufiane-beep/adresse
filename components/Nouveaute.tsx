@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { BOOKING_URL, handleBookingClick } from "@/lib/booking";
 
 const photos = [
   { src: "/images/soir/A7407031.jpg", alt: "Table dressée pour le service du soir", objectPosition: "center 35%" },
@@ -31,17 +32,20 @@ export default function Nouveaute() {
           >
             <span className="inline-flex items-center gap-2 font-sans font-black text-xs tracking-[0.35em] uppercase bg-ember text-parchment px-4 py-2.5 mb-6">
               <span className="w-2 h-2 rounded-full bg-parchment animate-pulse-slow" />
-              C&apos;est nouveau
+              Dernière soirée · Sam. 28 nov.
             </span>
             <h2
               className="font-serif text-cream font-light leading-tight mb-8"
               style={{ fontSize: "clamp(2.4rem, 5vw, 4rem)" }}
             >
-              Après le jour,<br />place à la nuit
+              Une dernière nuit,<br />avant de revenir
             </h2>
             <div className="w-10 h-px bg-ember mb-8" />
             <p className="font-sans text-cream/55 text-sm leading-relaxed max-w-xs">
-              L&apos;Adresse 86 se réinvente à la tombée du jour : kémias à partager, Medina Roll doré, formules généreuses et cocktails maison, entre saveurs marocaines et créations signature.
+              Ce samedi 28 novembre, de 18h30 à 21h30, on vous sert le dernier soir de la première édition de nos soirées : kémias à partager, Medina Roll doré, formules généreuses et cocktails maison.
+            </p>
+            <p className="font-sans text-cream/80 text-sm leading-relaxed max-w-xs mt-4">
+              Merci d&apos;être venus si nombreux. Les soirées font une courte pause et reviennent très prochainement.
             </p>
 
             <div className="mt-12 flex flex-col gap-5">
@@ -65,16 +69,25 @@ export default function Nouveaute() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
-              className="mt-12"
+              className="mt-12 flex flex-col items-start gap-6"
             >
               <a
-                href="/menu/soir"
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleBookingClick}
                 className="group relative inline-flex items-center gap-4 font-sans text-[11px] tracking-[0.3em] uppercase"
               >
                 <span className="relative z-10 bg-ember text-parchment px-10 py-5 group-hover:bg-ember-light transition-colors duration-500">
-                  Découvrir le menu du soir
+                  Réserver pour samedi
                 </span>
                 <span className="absolute -bottom-1 -right-1 w-full h-full border border-parchment/20 group-hover:border-ember/40 transition-colors duration-500" />
+              </a>
+              <a
+                href="/menu/soir"
+                className="font-sans text-[11px] tracking-[0.3em] uppercase text-cream/70 border-b border-cream/30 pb-1 hover:text-cream hover:border-ember transition-colors duration-300"
+              >
+                Découvrir le menu du soir
               </a>
             </motion.div>
           </motion.div>

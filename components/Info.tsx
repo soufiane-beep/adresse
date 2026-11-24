@@ -95,6 +95,9 @@ export default function Info() {
                 <p className="font-sans text-stone text-[11px] mt-2">
                   Brunch servi jusqu&apos;à 15h
                 </p>
+                <p className="font-sans text-ember text-[11px]">
+                  Dernière soirée de la première édition le samedi 28 novembre. Les soirées reviennent très prochainement.
+                </p>
                 {/* Badge ouvert/fermé */}
                 <div className={`inline-flex items-center gap-2 mt-4 px-3 py-1.5 text-[10px] font-sans tracking-wide ${
                   status.isOpen

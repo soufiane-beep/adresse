@@ -5,6 +5,7 @@ import Script from "next/script";
 import { SITE_NAME, SITE_URL, restaurantJsonLd } from "@/lib/site";
 import { RESTOMAX_STORE_UID, RESTOMAX_WIDGET_SRC } from "@/lib/booking";
 import BookingWidget from "@/components/BookingWidget";
+import LastNightPopup from "@/components/LastNightPopup";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -88,6 +89,7 @@ export default function RootLayout({
         </Script>
         <Script id="restomaxbook-widget-injector" src={RESTOMAX_WIDGET_SRC} strategy="afterInteractive" />
         <BookingWidget />
+        <LastNightPopup />
       </body>
     </html>
   );

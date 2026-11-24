@@ -9,7 +9,7 @@ const pillars = [
   { label: "Café de spécialité", sub: "Artisanal" },
   { label: "Lun–Ven", sub: "9h–17h" },
   { label: "Week-end", sub: "10h–17h" },
-  { label: "Soir Ven–Sam", sub: "18h30–21h30" },
+  { label: "Soirées", sub: "De retour bientôt" },
 ];
 
 const containerVariants: Variants = {

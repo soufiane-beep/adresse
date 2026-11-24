@@ -89,6 +89,9 @@ export default function Footer() {
               <p className="font-sans text-stone/55 text-[10px] tracking-wide mt-1">
                 Brunch servi jusqu&apos;à 15h
               </p>
+              <p className="font-sans text-stone/55 text-[10px] tracking-wide">
+                Soirées : dernière le sam. 28/11, retour très prochainement
+              </p>
             </div>
           </div>
 

@@ -74,7 +74,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.88, ease: "easeOut" }}
           className="font-sans text-stone text-[10px] tracking-[0.32em] uppercase mb-12"
         >
-          Lun–Ven 9h–17h &nbsp;·&nbsp; Week-end 10h–17h &nbsp;·&nbsp; Soir Ven–Sam 18h30–21h30
+          Lun–Ven 9h–17h &nbsp;·&nbsp; Week-end 10h–17h &nbsp;·&nbsp; Dernière soirée sam. 28/11 18h30–21h30
         </motion.p>
 
         {/* CTAs */}
