@@ -6,23 +6,23 @@ import Image from "next/image";
 
 const signatures = [
   {
-    name: "Moroccan Breakfast",
+    name: "Msemen Nomad",
     description:
-      "Msemen accompagné de miel, fromage frais, 2 œufs au plat, pain, smoothie & boisson chaude (thé marocain ou café au lait).",
+      "Crêpe feuilletée marocaine, crème de paprika, roquette, feta, tomates cerises, tomates séchées, noix, menthe ciselée & sauce grenade.",
     price: "15",
     badge: "Best Seller",
-    image: "IMG_4213.JPG",
-    objectPosition: "center 85%",
+    image: "A7406821.jpg",
+    objectPosition: "center 65%",
     imageLeft: true,
   },
   {
-    name: "Sweet Chicken Waffle",
+    name: "Moroccan Breakfast",
     description:
-      "Gaufre de Bruxelles, poulet caramélisé, crudités, oignons crispy, crumble de cacahuètes & sirop d'érable. Le mariage sucré-salé signature 86.",
-    price: "14",
+      "Msemen, miel, fromage frais, 2 œufs au plat, pain, jus multi fruits & thé marocain ou café. Version premium avec yogurt bowl, fruits de saison & granola.",
+    price: "15",
     badge: null,
-    image: "IMG_3256 19.15.09.jpg",
-    objectPosition: "center 40%",
+    image: "IMG_4213.JPG",
+    objectPosition: "center 85%",
     imageAspect: "aspect-[4/5]",
     imageLeft: false,
   },
